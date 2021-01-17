@@ -59,19 +59,19 @@ def change_size(filepath,  filename,  dest_filename):
     scale = resol / max_side
     size2 = 2048 / scale
        
-    original_file = remove_transparency(original_file)
-    original_file.thumbnail((size2, size2))
+    #original_file = remove_transparency(original_file)
     original_file.save(dest_filename + '/' + filename)
     
     check_temperature()
-    
+    print(scale)
+
     if scale > 1:
-    	os.system("python test.py -i '" + dest_filename + str(i) + '/' + filename + "' --checkpoint 'data/checkpoints/proSRGAN_x8.pth' --scale " + scale + " -o outputs")	
+    	os.system("python test.py -i '" + dest_filename + '/' + filename + "' --checkpoint 'data/checkpoints/proSRGAN_x8.pth'  --scale " + str(int(scale)) + " -o outputs -mx 128")	
     	
 def main():
 
     #reading all the files from source filepath and making changes on examples (expect)
-    inp_path_a =  "./NEW"
+    inp_path_a =  "./raw"
     dest_path_a = "./resScale"
     train_arr_a = os.listdir(path= inp_path_a) 
     for filename_a in train_arr_a:
@@ -79,5 +79,4 @@ def main():
     
 
 if __name__ == '__main__':
-    args = parse_args()
     main()
