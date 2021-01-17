@@ -15,7 +15,7 @@ fs.readdir( file + "new/", async (err, files) => {
        'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
     formData: 
      { images: 
-        { value: fs.createReadStream("/home/volodymyr/Documents/res/new/" + files[index]),
+        { value: fs.createReadStream( file + "new/" + files[index]),
           options: 
            { filename: '15.jpg',
              contentType: null } },
