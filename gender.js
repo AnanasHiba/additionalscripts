@@ -23,7 +23,9 @@ request(options, function (error, response, body) {
   console.log(body);
 });**/
 
-fs.readdir("/home/volodymyr/Documents/res/new/", async (err, files) => {
+var file = "/home/volodymyr/Documents/res/";
+
+fs.readdir( file + "new/", async (err, files) => {
   for (let index = 0; index < files.length; index++){ 
   //files.forEach(file => {
     var options = { method: 'POST',
@@ -47,11 +49,11 @@ fs.readdir("/home/volodymyr/Documents/res/new/", async (err, files) => {
 	  let gender = JSON.parse(body).results[0][0].features[0].result;
 
 	  if (gender == "male") {
-	    mv("/home/volodymyr/Documents/res/new/" + files[index], "/home/volodymyr/Documents/res/male/" + files[index], (err) => {
+	    mv( file + "new/" + files[index],  file + "male/" + files[index], (err) => {
     	      if (err) console.log(err);
             });
 	  } else {
-	    mv("/home/volodymyr/Documents/res/new/" + files[index], "/home/volodymyr/Documents/res/female/" + files[index], (err) => {
+	    mv( file + "new/" + files[index],  file + "female/" + files[index], (err) => {
     	      if (err) console.log(err);
             });
 	  }
